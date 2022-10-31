@@ -7,7 +7,7 @@ pipeline
         {
            steps
            {              
-                sh 'docker build -t python .'
+                sh 'docker build -t ubuntu .'
               
            }
         }
@@ -15,14 +15,14 @@ pipeline
         {
             steps
             {
-                sh 'docker run python'
+                sh 'docker run ubuntu'
             }
         }
         stage('Giving tag')
         {
             steps
             {
-                sh 'docker tag gcc ashjd/ashu-jenkins1:gcc'
+                sh 'docker tag ubuntu apoorvasahu34/jenkins:ubuntu'
             }
         }
         stage('Docker login')
@@ -40,14 +40,14 @@ pipeline
         {
             steps
             {     
-                sh 'docker push ashjd/ashu-jenkins1:gcc'
+                sh 'docker push apoorvasahu34/jenkins:ubuntu'
             }          
         }
         stage('Pull image from DockerHub')
         {
             steps
             {     
-                sh 'docker pull ashjd/ashu-jenkins1:gcc'
+                sh 'docker pull apoorvasahu34/jenkins:ubuntu'
             }
         }
     }
