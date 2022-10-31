@@ -1,17 +1,54 @@
-pipeline {
+pipeline 
+{
     agent any
-
-stages {
-        stage('a') {
-
-steps {
-echo "Building done here" }
+    stages
+    {
+        stage('Build Dockerfile')
+        {
+           steps
+           {              
+                sh 'docker build -t python .'
+              
+           }
         }
-        stage('b') { steps {
-echo "Testing done here" }
+        stage('Run container')
+        {
+            steps
+            {
+                sh 'docker run python'
+            }
         }
-        stage('c') { steps {
-echo "Deploying done here" }
+        stage('Giving tag')
+        {
+            steps
+            {
+                sh 'docker tag gcc ashjd/ashu-jenkins1:gcc'
+            }
+        }
+        stage('Docker login')
+        {
+            steps
+            {
+                withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'ashUSR', passwordVariable: 'ashPSW')]) 
+                {
+                    sh 'echo ${ashPSW} | docker login -u ${ashUSR} --password-stdin'
+
+                }
+            }   
+        }
+        stage('Push image to DockerHub')
+        {
+            steps
+            {     
+                sh 'docker push ashjd/ashu-jenkins1:gcc'
+            }          
+        }
+        stage('Pull image from DockerHub')
+        {
+            steps
+            {     
+                sh 'docker pull ashjd/ashu-jenkins1:gcc'
+            }
         }
     }
 }
