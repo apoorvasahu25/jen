@@ -7,7 +7,7 @@ pipeline
         {
            steps
            {              
-                sh 'docker build -t ubuntu .'
+                sh 'docker build -t apoo .'
               
            }
         }
@@ -15,21 +15,21 @@ pipeline
         {
             steps
             {
-                sh 'docker run ubuntu'
+                sh ' docker run apoo'
             }
         }
         stage('Giving tag')
         {
             steps
             {
-                sh 'docker tag ubuntu apoorvasahu34/jenkins:ubuntu'
+                sh 'docker tag apoo apoorvasahu34/jenkins:apoo'
             }
         }
         stage('Docker login')
         {
             steps
             {
-                withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'apooUSR', passwordVariable: 'apooPSW')]) 
+                withCredentials([usernamePassword(credentialsId: 'apoorva_git_login', usernameVariable: 'apooUSR', passwordVariable: 'apooPSW')]) 
                 {
                     sh 'echo ${apooPSW} | docker login -u ${apooUSR} --password-stdin'
 
@@ -40,14 +40,14 @@ pipeline
         {
             steps
             {     
-                sh 'docker push apoorvasahu34/jenkins:ubuntu'
+                sh 'docker push apoorvasahu34/jenkins:apoo'
             }          
         }
         stage('Pull image from DockerHub')
         {
             steps
             {     
-                sh 'docker pull apoorvasahu34/jenkins:ubuntu'
+                sh 'docker pull apoorvasahu34/jenkins:apoo'
             }
         }
     }
