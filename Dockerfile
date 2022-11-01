@@ -1,2 +1,3 @@
 FROM ubuntu
-RUN echo "this line from dockerfile"
+CMD echo "this line from dockerfile"
+
