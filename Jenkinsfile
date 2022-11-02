@@ -3,7 +3,7 @@ pipeline
     agent any
     stages
     {
-        stage('Build Dockerfile')
+        stage('Building Dockerfile')
         {
            steps
            {              
@@ -11,14 +11,14 @@ pipeline
               
            }
         }
-        stage('Run container')
+        stage('Run the container')
         {
             steps
             {
                 sh ' docker run apoo'
             }
         }
-        stage('Giving tag')
+        stage('Giving the tag')
         {
             steps
             {
@@ -36,7 +36,7 @@ pipeline
                 }
             }   
         }
-        stage('Push image to DockerHub')
+        stage('Pushing image to DockerHub')
         {
             steps
             {     
