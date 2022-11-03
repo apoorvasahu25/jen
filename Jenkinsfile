@@ -7,7 +7,7 @@ pipeline
         {
            steps
            {              
-                sh 'docker build -t apoorva .'
+                sh 'docker build -t apoo .'
               
            }
         }
@@ -15,14 +15,14 @@ pipeline
         {
             steps
             {
-                sh ' docker run apoorva'
+                sh ' docker run apoo'
             }
         }
         stage('Giving the tag')
         {
             steps
             {
-                sh 'docker tag apoorva apoorvasahu34/jenkins:apoo'
+                sh 'docker tag apoo apoorvasahu34/jenkins:apoo'
             }
         }
         stage('Docker login')
@@ -31,7 +31,7 @@ pipeline
             {
                 withCredentials([usernamePassword(credentialsId: 'apoorva_git_login', usernameVariable: 'apooUSR', passwordVariable: 'apooPSW')]) 
                 {
-                    sh 'echo ${apoorvaPSW} | docker login -u ${apooUSR} --password-stdin'
+                    sh 'echo ${apooPSW} | docker login -u ${apooUSR} --password-stdin'
 
                 }
             }   
@@ -52,3 +52,4 @@ pipeline
         }
     }
 }
+
