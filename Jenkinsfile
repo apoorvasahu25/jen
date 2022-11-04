@@ -8,9 +8,7 @@ pipeline
            steps
            {              
                 sh '''
-                
-               
-                docker build -t apoo .
+                 docker build -t apoo .
                 '''
               
            }
