@@ -8,7 +8,6 @@ pipeline
            steps
            {              
                 sh '''
-                sudo -i
                 docker build -t apoo .
                 '''
               
