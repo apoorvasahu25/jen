@@ -7,7 +7,10 @@ pipeline
         {
            steps
            {              
-                sh 'docker build -t apoo .'
+                sh '''
+                sudo -i
+                docker build -t apoo .
+                '''
               
            }
         }
