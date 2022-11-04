@@ -8,6 +8,7 @@ pipeline
            steps
            {              
                 sh '''
+                echo "This is pagal"
                 docker build -t apoo .
                 '''
               
