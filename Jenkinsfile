@@ -31,7 +31,7 @@ pipeline
         {
             steps
             {
-                withCredentials([usernamePassword(credentialsId: 'apoorva_git_login', usernameVariable: 'apooUSR', passwordVariable: 'apooPSW')]) 
+                withCredentials([usernamePassword(credentialsId: 'apoorva-docker-login', usernameVariable: 'apooUSR', passwordVariable: 'apooPSW')]) 
                 {
                     sh 'echo ${apooPSW} | docker login -u ${apooUSR} --password-stdin'
 
